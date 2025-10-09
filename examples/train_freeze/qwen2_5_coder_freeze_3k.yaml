@@ -42,7 +42,7 @@ ddp_timeout: 180000000
 val_size: 0.1
 per_device_eval_batch_size: 1
 eval_strategy: steps
-eval_steps: 50
+eval_steps: 200
 load_best_model_at_end: true
 metric_for_best_model: accuracy
 greater_is_better: true
