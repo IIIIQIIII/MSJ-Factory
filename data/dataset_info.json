@@ -27,5 +27,18 @@
       "user_tag": "user",
       "assistant_tag": "assistant"
     }
+  },
+  "sentiment_balanced_3k": {
+    "file_name": "chnsenticorp_train_cleaned_instruct_balanced_3k.jsonl",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages" 
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
   }
 }
