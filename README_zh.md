@@ -17,7 +17,6 @@
 ## 📖 目录
 
 - [项目简介](#-项目简介)
-- [为什么选择这个教程](#-为什么选择这个教程)
 - [快速开始](#-快速开始)
   - [方式一：Google Colab（推荐）](#方式一google-colab推荐)
   - [方式二：本地运行](#方式二本地运行)
@@ -57,28 +56,6 @@
 - ✅ 达到完整微调 85-95% 的效果
 
 **适用场景**：计算资源有限、快速实验、领域适配
-
----
-
-## ✨ 为什么选择这个教程
-
-### 🎓 新手友好
-- 📝 逐步详解每个步骤
-- 💡 每条命令都有详细说明
-- 🐛 包含常见问题和解决方案
-- 📊 可视化进度指示器
-
-### 🚀 生产就绪
-- ⚡ 针对 T4/A100 GPU 优化
-- 📦 完整的评估流程
-- 🔄 自动模型对比
-- 📈 全面的评估指标（准确率、精确率、召回率、F1）
-
-### 🌟 现代技术栈
-- 🤖 最新的 Qwen2.5-Coder 模型
-- 🔥 LlamaFactory 框架集成
-- 📊 专业的评估脚本
-- ☁️ HuggingFace Hub 集成
 
 ---
 
@@ -129,8 +106,8 @@ python scripts/eval_sentiment_compare.py
 **作用**：下载完整的项目代码到你的环境
 
 ```bash
-git clone --depth 1 https://github.com/IIIIQIIII/MSJ-Factory.git
-cd MSJ-Factory
+!git clone --depth 1 https://github.com/IIIIQIIII/MSJ-Factory.git
+%cd MSJ-Factory
 ```
 
 **预期输出**：
@@ -143,7 +120,7 @@ Receiving objects: 100% (368/368), 6.08 MiB | 11.88 MiB/s, done.
 
 **验证安装**：
 ```bash
-ls -lh
+!ls -lh
 # 你应该看到：data/、examples/、scripts/、src/ 等目录
 ```
 
@@ -165,19 +142,22 @@ ls -lh
 **作用**：安装 PyTorch、Transformers、vLLM 等必需库
 
 ```bash
-pip install -e .[torch,bitsandbytes,vllm]
+!pip install -e .[torch,bitsandbytes,vllm]
 ```
 
 **安装时间**：3-5 分钟
 
 **验证安装**：
 ```python
+import torch
+import vllm
+
 # 检查 PyTorch
-python -c "import torch; print(f'PyTorch: {torch.__version__}')"
-python -c "import torch; print(f'CUDA: {torch.cuda.is_available()}')"
+print(f'PyTorch: {torch.__version__}')
+print(f'CUDA: {torch.cuda.is_available()}')
 
 # 检查 vLLM
-python -c "import vllm; print(f'vLLM: {vllm.__version__}')"
+print(f'vLLM: {vllm.__version__}')
 ```
 
 **预期输出**：
@@ -193,19 +173,19 @@ vLLM: 0.10.0
 **问题1：CUDA 不可用**
 ```bash
 # 安装支持 CUDA 的 PyTorch
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+!pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 ```
 
 **问题2：安装时内存不足**
 ```bash
 # 使用 --no-cache-dir
-pip install --no-cache-dir -e .[torch,bitsandbytes,vllm]
+!pip install --no-cache-dir -e .[torch,bitsandbytes,vllm]
 ```
 
 **问题3：vLLM 安装失败**
 ```bash
 # 跳过 vLLM（训练时可选）
-pip install -e .[torch,bitsandbytes]
+!pip install -e .[torch,bitsandbytes]
 ```
 
 </details>
@@ -256,7 +236,7 @@ compute_accuracy: true
 #### 3.2 开始训练
 
 ```bash
-llamafactory-cli train examples/train_freeze/qwen2_5_coder_freeze_3k.yaml
+!llamafactory-cli train examples/train_freeze/qwen2_5_coder_freeze_3k.yaml
 ```
 
 **训练进度**：
@@ -335,7 +315,7 @@ dataset: your_dataset_name  # 必须在 data/dataset_info.json 中注册
 **作用**：对比基础模型与微调后模型的性能
 
 ```bash
-python scripts/eval_sentiment_compare.py \
+!python scripts/eval_sentiment_compare.py \
     --csv_path data/ChnSentiCorp_test.csv \
     --base_model Qwen/Qwen2.5-Coder-1.5B-Instruct \
     --finetuned_model saves/qwen2_5-coder-1.5b/freeze/sft \
@@ -549,10 +529,10 @@ bf16: true
 #### 多 GPU 设置
 ```bash
 # 双卡
-CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/train_freeze/qwen2_5_coder_freeze_3k.yaml
+!CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/train_freeze/qwen2_5_coder_freeze_3k.yaml
 
 # 四卡
-CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train examples/train_freeze/qwen2_5_coder_freeze_3k.yaml
+!CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train examples/train_freeze/qwen2_5_coder_freeze_3k.yaml
 ```
 
 ### 配置参数详解
@@ -730,12 +710,12 @@ tokenizer = AutoTokenizer.from_pretrained("saves/qwen2_5-coder-1.5b/freeze/sft")
 
 **选项2**：vLLM（生产用）
 ```bash
-vllm serve saves/qwen2_5-coder-1.5b/freeze/sft --port 8000
+!vllm serve saves/qwen2_5-coder-1.5b/freeze/sft --port 8000
 ```
 
 **选项3**：LlamaFactory API
 ```bash
-llamafactory-cli api examples/inference/qwen2_5_coder_sft.yaml
+!llamafactory-cli api examples/inference/qwen2_5_coder_sft.yaml
 ```
 
 详见 `contexts/chnsenticorp-evaluation-guide.md` 中的部署指南。
@@ -751,7 +731,7 @@ llamafactory-cli api examples/inference/qwen2_5_coder_sft.yaml
 ```bibtex
 @misc{msj-factory-2025,
   title={Qwen2.5-Coder 情感分析微调教程},
-  author={MSJ-Factory 贡献者},
+  author={马诗剑},
   year={2025},
   howpublished={\url{https://github.com/IIIIQIIII/MSJ-Factory}}
 }
@@ -781,10 +761,10 @@ llamafactory-cli api examples/inference/qwen2_5_coder_sft.yaml
 
 1. **⭐ 给本仓库点个 Star** - 帮助其他人发现这个项目
 2. **🔗 分享** - 告诉你的朋友和同事
-3. **🐛 报告问题** - 帮助我们改进
+3. **🐛 报告问题** - 帮助作者改进
 4. **📝 贡献代码** - 欢迎 Pull Request！
 
-**👉 别忘了点 Star！这对我们意义重大！⭐**
+**👉 别忘了点 Star！这对作者意义重大！⭐**
 
 [![Star History Chart](https://api.star-history.com/svg?repos=IIIIQIIII/MSJ-Factory&type=Date)](https://star-history.com/#IIIIQIIII/MSJ-Factory&Date)
 
@@ -792,9 +772,7 @@ llamafactory-cli api examples/inference/qwen2_5_coder_sft.yaml
 
 <div align="center">
 
-**用 ❤️ 构建 by MSJ-Factory 团队**
-
-[🌟 Star](https://github.com/IIIIQIIII/MSJ-Factory) · [🐛 Issues](https://github.com/IIIIQIIII/MSJ-Factory/issues) · [📖 文档](https://github.com/IIIIQIIII/MSJ-Factory/tree/main/contexts)
+**用 ❤️ 构建 by 马诗剑**
 
 </div>
 

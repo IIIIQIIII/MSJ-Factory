@@ -17,7 +17,6 @@
 ## 📖 Table of Contents
 
 - [What This Project Does](#-what-this-project-does)
-- [Why Choose This Tutorial](#-why-choose-this-tutorial)
 - [Quick Start](#-quick-start)
   - [Option 1: Google Colab (Recommended)](#option-1-google-colab-recommended)
   - [Option 2: Local Setup](#option-2-local-setup)
@@ -57,28 +56,6 @@ Freeze training is a parameter-efficient fine-tuning method that:
 - ✅ Achieves 85-95% of full fine-tuning quality
 
 **Perfect for**: Limited compute resources, quick experimentation, domain adaptation
-
----
-
-## ✨ Why Choose This Tutorial
-
-### 🎓 Beginner-Friendly
-- 📝 Step-by-step instructions
-- 💡 Detailed explanations for every command
-- 🐛 Common issues and solutions included
-- 📊 Visual progress indicators
-
-### 🚀 Production-Ready
-- ⚡ Optimized for T4/A100 GPUs
-- 📦 Complete evaluation pipeline
-- 🔄 Automatic model comparison
-- 📈 Comprehensive metrics (Accuracy, Precision, Recall, F1)
-
-### 🌟 Modern Tech Stack
-- 🤖 Latest Qwen2.5-Coder model
-- 🔥 LlamaFactory integration
-- 📊 Professional evaluation scripts
-- ☁️ HuggingFace Hub integration
 
 ---
 
@@ -129,8 +106,8 @@ python scripts/eval_sentiment_compare.py
 **What it does**: Downloads the complete project code to your environment
 
 ```bash
-git clone --depth 1 https://github.com/IIIIQIIII/MSJ-Factory.git
-cd MSJ-Factory
+!git clone --depth 1 https://github.com/IIIIQIIII/MSJ-Factory.git
+%cd MSJ-Factory
 ```
 
 **Expected output**:
@@ -143,7 +120,7 @@ Receiving objects: 100% (368/368), 6.08 MiB | 11.88 MiB/s, done.
 
 **Verify installation**:
 ```bash
-ls -lh
+!ls -lh
 # You should see: data/, examples/, scripts/, src/, etc.
 ```
 
@@ -165,19 +142,22 @@ ls -lh
 **What it does**: Installs PyTorch, Transformers, vLLM, and other required libraries
 
 ```bash
-pip install -e .[torch,bitsandbytes,vllm]
+!pip install -e .[torch,bitsandbytes,vllm]
 ```
 
 **Installation time**: 3-5 minutes
 
 **Verify installation**:
 ```python
+import torch
+import vllm
+
 # Check PyTorch
-python -c "import torch; print(f'PyTorch: {torch.__version__}')"
-python -c "import torch; print(f'CUDA: {torch.cuda.is_available()}')"
+print(f'PyTorch: {torch.__version__}')
+print(f'CUDA: {torch.cuda.is_available()}')
 
 # Check vLLM
-python -c "import vllm; print(f'vLLM: {vllm.__version__}')"
+print(f'vLLM: {vllm.__version__}')
 ```
 
 **Expected output**:
@@ -193,19 +173,19 @@ vLLM: 0.10.0
 **Issue 1: CUDA not available**
 ```bash
 # Install CUDA-enabled PyTorch
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+!pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 ```
 
 **Issue 2: Out of memory during installation**
 ```bash
 # Use --no-cache-dir
-pip install --no-cache-dir -e .[torch,bitsandbytes,vllm]
+!pip install --no-cache-dir -e .[torch,bitsandbytes,vllm]
 ```
 
 **Issue 3: vLLM installation fails**
 ```bash
 # Skip vLLM (optional for training)
-pip install -e .[torch,bitsandbytes]
+!pip install -e .[torch,bitsandbytes]
 ```
 
 </details>
@@ -256,7 +236,7 @@ compute_accuracy: true
 #### 3.2 Start Training
 
 ```bash
-llamafactory-cli train examples/train_freeze/qwen2_5_coder_freeze_3k.yaml
+!llamafactory-cli train examples/train_freeze/qwen2_5_coder_freeze_3k.yaml
 ```
 
 **Training progress**:
@@ -335,7 +315,7 @@ dataset: your_dataset_name  # Must be registered in data/dataset_info.json
 **What it does**: Compares base model vs fine-tuned model performance
 
 ```bash
-python scripts/eval_sentiment_compare.py \
+!python scripts/eval_sentiment_compare.py \
     --csv_path data/ChnSentiCorp_test.csv \
     --base_model Qwen/Qwen2.5-Coder-1.5B-Instruct \
     --finetuned_model saves/qwen2_5-coder-1.5b/freeze/sft \
@@ -549,10 +529,10 @@ bf16: true
 #### For Multi-GPU Setup
 ```bash
 # Dual GPU
-CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/train_freeze/qwen2_5_coder_freeze_3k.yaml
+!CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train examples/train_freeze/qwen2_5_coder_freeze_3k.yaml
 
 # Quad GPU
-CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train examples/train_freeze/qwen2_5_coder_freeze_3k.yaml
+!CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train examples/train_freeze/qwen2_5_coder_freeze_3k.yaml
 ```
 
 ### Configuration Parameters Explained
@@ -730,12 +710,12 @@ tokenizer = AutoTokenizer.from_pretrained("saves/qwen2_5-coder-1.5b/freeze/sft")
 
 **Option 2**: vLLM (for production)
 ```bash
-vllm serve saves/qwen2_5-coder-1.5b/freeze/sft --port 8000
+!vllm serve saves/qwen2_5-coder-1.5b/freeze/sft --port 8000
 ```
 
 **Option 3**: LlamaFactory API
 ```bash
-llamafactory-cli api examples/inference/qwen2_5_coder_sft.yaml
+!llamafactory-cli api examples/inference/qwen2_5_coder_sft.yaml
 ```
 
 See `contexts/chnsenticorp-evaluation-guide.md` for deployment guide.
@@ -751,7 +731,7 @@ If you use this project in your research, please cite:
 ```bibtex
 @misc{msj-factory-2025,
   title={Qwen2.5-Coder Sentiment Analysis Fine-tuning Tutorial},
-  author={MSJ-Factory Contributors},
+  author={MASHIJIAN},
   year={2025},
   howpublished={\url{https://github.com/IIIIQIIII/MSJ-Factory}}
 }
@@ -781,10 +761,10 @@ If this tutorial helped you, please consider:
 
 1. **⭐ Star this repository** - Helps others discover this project
 2. **🔗 Share** - Tell your friends and colleagues
-3. **🐛 Report issues** - Help us improve
+3. **🐛 Report issues** - Help the author improve
 4. **📝 Contribute** - Pull requests are welcome!
 
-**👉 Don't forget to star! It means a lot to us! ⭐**
+**👉 Don't forget to star! It means a lot to the author! ⭐**
 
 [![Star History Chart](https://api.star-history.com/svg?repos=IIIIQIIII/MSJ-Factory&type=Date)](https://star-history.com/#IIIIQIIII/MSJ-Factory&Date)
 
@@ -792,9 +772,7 @@ If this tutorial helped you, please consider:
 
 <div align="center">
 
-**Built with ❤️ by the MSJ-Factory Team**
-
-[🌟 Star](https://github.com/IIIIQIIII/MSJ-Factory) · [🐛 Issues](https://github.com/IIIIQIIII/MSJ-Factory/issues) · [📖 Docs](https://github.com/IIIIQIIII/MSJ-Factory/tree/main/contexts)
+**Built with ❤️ by MASHIJIAN**
 
 </div>
 
