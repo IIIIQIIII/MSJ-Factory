@@ -118,6 +118,12 @@ python scripts/eval_sentiment_compare.py
 %cd MSJ-Factory
 ```
 
+<div align="center">
+<img src="assets/run-clone-repository-colab-cell.png" alt="Run clone repository cell" width="700"/>
+
+*Click the play icon to run the Colab cell and clone the repository*
+</div>
+
 **Expected output**:
 ```
 Cloning into 'MSJ-Factory'...
@@ -152,6 +158,12 @@ Receiving objects: 100% (368/368), 6.08 MiB | 11.88 MiB/s, done.
 ```bash
 !pip install -e .[torch,bitsandbytes,vllm]
 ```
+
+<div align="center">
+<img src="assets/run-install-dependencies-colab-cell.png" alt="Run install dependencies cell" width="700"/>
+
+*Click the play icon to run the Colab cell and install dependencies*
+</div>
 
 **Installation time**: 3-5 minutes
 
@@ -247,6 +259,12 @@ compute_accuracy: true
 !llamafactory-cli train examples/train_freeze/qwen2_5_coder_freeze_3k.yaml
 ```
 
+<div align="center">
+<img src="assets/run-model-training-colab-cell.png" alt="Run model training cell" width="700"/>
+
+*Click the play icon to run the Colab cell and start model training*
+</div>
+
 **Training progress**:
 ```
 🚀 Starting training...
@@ -329,6 +347,12 @@ dataset: your_dataset_name  # Must be registered in data/dataset_info.json
     --finetuned_model saves/qwen2_5-coder-1.5b/freeze/sft \
     --output_file data/sentiment_comparison_results.json
 ```
+
+<div align="center">
+<img src="assets/run-model-evaluation-colab-cell.png" alt="Run model evaluation cell" width="700"/>
+
+*Click the play icon to run the Colab cell and evaluate the model*
+</div>
 
 **Evaluation time**: 5-10 minutes
 

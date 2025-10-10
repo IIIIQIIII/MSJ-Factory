@@ -37,7 +37,7 @@
 
 ## 🎯 项目简介
 
-本项目使用**冻结训练（Freeze Training）**方法微调 **Qwen2.5-Coder-1.5B-Instruct** 模型，用于中文情感分析：
+本项目使用**Freeze Training**方法微调 **Qwen2.5-Coder-1.5B-Instruct** 模型，用于中文情感分析：
 
 - 🎯 **任务**：二分类情感分析（正面/负面）
 - 📊 **数据集**：ChnSentiCorp（中文情感语料）
@@ -118,6 +118,12 @@ python scripts/eval_sentiment_compare.py
 %cd MSJ-Factory
 ```
 
+<div align="center">
+<img src="assets/run-clone-repository-colab-cell.png" alt="运行克隆仓库单元格" width="700"/>
+
+*点击播放图标运行 Colab 单元格并克隆仓库*
+</div>
+
 **预期输出**：
 ```
 Cloning into 'MSJ-Factory'...
@@ -152,6 +158,12 @@ Receiving objects: 100% (368/368), 6.08 MiB | 11.88 MiB/s, done.
 ```bash
 !pip install -e .[torch,bitsandbytes,vllm]
 ```
+
+<div align="center">
+<img src="assets/run-install-dependencies-colab-cell.png" alt="运行安装依赖单元格" width="700"/>
+
+*点击播放图标运行 Colab 单元格并安装依赖*
+</div>
 
 **安装时间**：3-5 分钟
 
@@ -247,6 +259,12 @@ compute_accuracy: true
 !llamafactory-cli train examples/train_freeze/qwen2_5_coder_freeze_3k.yaml
 ```
 
+<div align="center">
+<img src="assets/run-model-training-colab-cell.png" alt="运行模型训练单元格" width="700"/>
+
+*点击播放图标运行 Colab 单元格并开始模型训练*
+</div>
+
 **训练进度**：
 ```
 🚀 开始训练...
@@ -329,6 +347,12 @@ dataset: your_dataset_name  # 必须在 data/dataset_info.json 中注册
     --finetuned_model saves/qwen2_5-coder-1.5b/freeze/sft \
     --output_file data/sentiment_comparison_results.json
 ```
+
+<div align="center">
+<img src="assets/run-model-evaluation-colab-cell.png" alt="运行模型评估单元格" width="700"/>
+
+*点击播放图标运行 Colab 单元格并评估模型*
+</div>
 
 **评估时间**：5-10 分钟
 
