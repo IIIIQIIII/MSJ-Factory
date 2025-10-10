@@ -67,8 +67,16 @@ Freeze training is a parameter-efficient fine-tuning method that:
 
 1. Click the Colab badge at the top
 2. Runtime → Change runtime type → GPU (T4)
-3. Run all cells (Runtime → Run all)
-4. Wait 30-40 minutes for complete workflow
+3. Click "Connect" to allocate a T4 GPU runtime
+
+<div align="center">
+<img src="assets/connect-colab-t4.png" alt="Connect to T4 GPU" width="600"/>
+
+*Connect to T4 GPU in Google Colab*
+</div>
+
+4. Run all cells (Runtime → Run all)
+5. Wait 30-40 minutes for complete workflow
 
 **Requirements**: Google account (free)
 
@@ -433,10 +441,45 @@ print(response)  # Output: {"sentiment": 1}
 
 #### 5.1 Get HuggingFace Token
 
-1. Visit [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
-2. Click "New token"
-3. Select "Write" permission
-4. Copy the token (starts with `hf_`)
+Follow these steps to create your HuggingFace access token:
+
+**Step 1**: Click on your profile icon in the top-right corner
+
+<div align="center">
+<img src="assets/click-profile-icon.png" alt="Click profile icon" width="600"/>
+</div>
+
+**Step 2**: Navigate to Settings → Access Tokens
+
+<div align="center">
+<img src="assets/select-access-tokens.png" alt="Select Access Tokens" width="600"/>
+</div>
+
+**Step 3**: Verify your identity by entering your password
+
+<div align="center">
+<img src="assets/confirm-identity.png" alt="Confirm identity" width="600"/>
+</div>
+
+**Step 4**: Click "+ Create new token"
+
+<div align="center">
+<img src="assets/create-new-token.png" alt="Create new token" width="600"/>
+</div>
+
+**Step 5**: Name your token, select "Write" role, and click "Create token"
+
+<div align="center">
+<img src="assets/generate-token.png" alt="Generate token" width="600"/>
+</div>
+
+**Step 6**: Copy your access token (starts with `hf_`)
+
+<div align="center">
+<img src="assets/copy-access-token.jpeg" alt="Copy access token" width="600"/>
+</div>
+
+⚠️ **Important**: Save your token securely. You won't be able to see it again!
 
 #### 5.2 Upload Model
 

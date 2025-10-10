@@ -67,8 +67,16 @@
 
 1. 点击顶部的 Colab 徽章
 2. Runtime → Change runtime type → GPU (T4)
-3. 运行所有单元格（Runtime → Run all）
-4. 等待 30-40 分钟完成整个流程
+3. 点击"连接"以分配 T4 GPU 运行环境
+
+<div align="center">
+<img src="assets/connect-colab-t4.png" alt="连接 T4 GPU" width="600"/>
+
+*在 Google Colab 中连接到 T4 GPU*
+</div>
+
+4. 运行所有单元格（Runtime → Run all）
+5. 等待 30-40 分钟完成整个流程
 
 **要求**：Google 账号（免费）
 
@@ -433,10 +441,45 @@ print(response)  # 输出：{"sentiment": 1}
 
 #### 5.1 获取 HuggingFace Token
 
-1. 访问 [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
-2. 点击 "New token"
-3. 选择 "Write" 权限
-4. 复制 token（以 `hf_` 开头）
+按照以下步骤创建你的 HuggingFace 访问令牌：
+
+**步骤1**：点击右上角的个人头像
+
+<div align="center">
+<img src="assets/click-profile-icon.png" alt="点击个人头像" width="600"/>
+</div>
+
+**步骤2**：进入 Settings → Access Tokens
+
+<div align="center">
+<img src="assets/select-access-tokens.png" alt="选择 Access Tokens" width="600"/>
+</div>
+
+**步骤3**：输入密码验证身份
+
+<div align="center">
+<img src="assets/confirm-identity.png" alt="确认身份" width="600"/>
+</div>
+
+**步骤4**：点击 "+ Create new token"
+
+<div align="center">
+<img src="assets/create-new-token.png" alt="创建新令牌" width="600"/>
+</div>
+
+**步骤5**：命名令牌，选择 "Write" 角色，然后点击 "Create token"
+
+<div align="center">
+<img src="assets/generate-token.png" alt="生成令牌" width="600"/>
+</div>
+
+**步骤6**：复制你的访问令牌（以 `hf_` 开头）
+
+<div align="center">
+<img src="assets/copy-access-token.jpeg" alt="复制访问令牌" width="600"/>
+</div>
+
+⚠️ **重要提示**：请安全保存你的令牌，之后将无法再次查看！
 
 #### 5.2 上传模型
 
