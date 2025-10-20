@@ -5,6 +5,7 @@
 [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IIIIQIIII/MSJ-Factory/blob/main/Qwen2_5_Sentiment_Fine_tuning_Tutorial.ipynb)
 [![GitHub Stars](https://img.shields.io/github/stars/IIIIQIIII/MSJ-Factory?style=social)](https://github.com/IIIIQIIII/MSJ-Factory)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![HuggingFace Model](https://img.shields.io/badge/🤗%20HuggingFace-Model-yellow)](https://huggingface.co/FutureMa/Qwen2.5-Coder-Sentiment-Freeze)
 
 **手把手教你微调 Qwen2.5-Coder 进行中文情感分析**
 
@@ -842,4 +843,3 @@ tokenizer = AutoTokenizer.from_pretrained("saves/qwen2_5-coder-1.5b/freeze/sft")
 **用 ❤️ 构建 by 马诗剑**
 
 </div>
-

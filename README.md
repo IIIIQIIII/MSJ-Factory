@@ -5,6 +5,7 @@
 [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IIIIQIIII/MSJ-Factory/blob/main/Qwen2_5_Sentiment_Fine_tuning_Tutorial.ipynb)
 [![GitHub Stars](https://img.shields.io/github/stars/IIIIQIIII/MSJ-Factory?style=social)](https://github.com/IIIIQIIII/MSJ-Factory)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![HuggingFace Model](https://img.shields.io/badge/🤗%20HuggingFace-Model-yellow)](https://huggingface.co/FutureMa/Qwen2.5-Coder-Sentiment-Freeze)
 
 **A Complete Guide to Fine-tuning Qwen2.5-Coder for Chinese Sentiment Analysis**
 
@@ -842,4 +843,3 @@ If this tutorial helped you, please consider:
 **Built with ❤️ by MASHIJIAN**
 
 </div>
-
